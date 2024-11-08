@@ -62,12 +62,16 @@ machine_learning_curated_dyf = sparkSqlQuery(
     transformation_ctx="SQLQuery_node"
 )
 
-# Write the joined data to the curated S3 bucket
+# Write the joined data to the curated S3 bucket with Data Catalog update enabled
 glueContext.write_dynamic_frame.from_options(
     frame=machine_learning_curated_dyf,
     connection_type="s3",
     format="json",
-    connection_options={"path": curated_machine_learning_path},
+    connection_options={
+        "path": curated_machine_learning_path,
+        "partitionKeys": [],
+        "useGlueDataCatalog": "true"  # Enable Data Catalog updates
+    },
     transformation_ctx="machine_learning_curated_node"
 )
 

@@ -59,12 +59,16 @@ join_dyf = sparkSqlQuery(
     transformation_ctx="JOIN_Query_node"
 )
 
-# Write the joined data to the curated S3 bucket
+# Write the joined data to the curated S3 bucket with Data Catalog update enabled
 glueContext.write_dynamic_frame.from_options(
     frame=join_dyf,
     connection_type="s3",
     format="json",
-    connection_options={"path": curated_customer_path},
+    connection_options={
+        "path": curated_customer_path,
+        "partitionKeys": [],
+        "useGlueDataCatalog": "true"  # Enable Data Catalog updates
+    },
     transformation_ctx="customer_curated_node"
 )
 

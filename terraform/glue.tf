@@ -103,6 +103,7 @@ resource "aws_glue_job" "customer_trusted_job" {
     "--enable-continuous-log-filter" = "true"
     "--enable-metrics"        = "true"
     "--project_name"          = var.project_name
+    "--enable-glue-datacatalog" = "true"
   }
 }
 
@@ -121,6 +122,7 @@ resource "aws_glue_job" "customer_curated_job" {
     "--enable-continuous-log-filter" = "true"
     "--enable-metrics"        = "true"
     "--project_name"          = var.project_name
+    "--enable-glue-datacatalog" = "true"
   }
 }
 
@@ -139,6 +141,7 @@ resource "aws_glue_job" "accelerometer_trusted_job" {
     "--enable-continuous-log-filter" = "true"
     "--enable-metrics"        = "true"
     "--project_name"          = var.project_name
+    "--enable-glue-datacatalog" = "true"
   }
 }
 
@@ -157,6 +160,7 @@ resource "aws_glue_job" "step_trainer_trusted_job" {
     "--enable-continuous-log-filter" = "true"
     "--enable-metrics"        = "true"
     "--project_name"          = var.project_name
+    "--enable-glue-datacatalog" = "true"
   }
 }
 
@@ -175,5 +179,6 @@ resource "aws_glue_job" "machine_learning_curated_job" {
     "--enable-continuous-log-filter" = "true"
     "--enable-metrics"        = "true"
     "--project_name"          = var.project_name
+    "--enable-glue-datacatalog" = "true"
   }
 }

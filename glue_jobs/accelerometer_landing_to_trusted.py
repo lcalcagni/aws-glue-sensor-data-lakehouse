@@ -67,12 +67,16 @@ DropFields_node = DropFields.apply(
     transformation_ctx="DropFields_node",
 )
 
-# Write output to the trusted accelerometer bucket
+# Write output to the trusted accelerometer bucket, with Data Catalog update enabled
 output_node = glueContext.write_dynamic_frame.from_options(
     frame=DropFields_node,
     connection_type="s3",
     format="json",
-    connection_options={"path": trusted_accelerometer_bucket, "partitionKeys": []},
+    connection_options={
+        "path": trusted_accelerometer_bucket,
+        "partitionKeys": [],
+        "useGlueDataCatalog": "true"
+    },
     transformation_ctx="output_node",
 )
 

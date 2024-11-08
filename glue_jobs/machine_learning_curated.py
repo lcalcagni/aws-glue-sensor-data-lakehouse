@@ -67,10 +67,14 @@ glueContext.write_dynamic_frame.from_options(
     frame=machine_learning_curated_dyf,
     connection_type="s3",
     format="json",
+    format_options={
+        "updateBehavior": "UPDATE_IN_DATABASE",
+        "partitionKeys": [],
+        "enableUpdateCatalog": True
+    },
     connection_options={
         "path": curated_machine_learning_path,
-        "partitionKeys": [],
-        "useGlueDataCatalog": "true"  # Enable Data Catalog updates
+        "useGlueDataCatalog": "true"
     },
     transformation_ctx="machine_learning_curated_node"
 )

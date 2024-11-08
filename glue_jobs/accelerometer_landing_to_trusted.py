@@ -72,9 +72,13 @@ output_node = glueContext.write_dynamic_frame.from_options(
     frame=DropFields_node,
     connection_type="s3",
     format="json",
+    format_options={
+        "updateBehavior": "UPDATE_IN_DATABASE",
+        "partitionKeys": [],
+        "enableUpdateCatalog": True
+    },
     connection_options={
         "path": trusted_accelerometer_bucket,
-        "partitionKeys": [],
         "useGlueDataCatalog": "true"
     },
     transformation_ctx="output_node",

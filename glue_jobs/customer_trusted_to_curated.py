@@ -64,10 +64,14 @@ glueContext.write_dynamic_frame.from_options(
     frame=join_dyf,
     connection_type="s3",
     format="json",
+    format_options={
+        "updateBehavior": "UPDATE_IN_DATABASE",
+        "partitionKeys": [],
+        "enableUpdateCatalog": True
+    },
     connection_options={
         "path": curated_customer_path,
-        "partitionKeys": [],
-        "useGlueDataCatalog": "true"  # Enable Data Catalog updates
+        "useGlueDataCatalog": "true"
     },
     transformation_ctx="customer_curated_node"
 )

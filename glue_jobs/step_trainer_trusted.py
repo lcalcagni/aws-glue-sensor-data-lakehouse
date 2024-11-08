@@ -67,10 +67,14 @@ glueContext.write_dynamic_frame.from_options(
     frame=step_trainer_trusted_dyf,
     connection_type="s3",
     format="json",
+    format_options={
+        "updateBehavior": "UPDATE_IN_DATABASE",
+        "partitionKeys": [],
+        "enableUpdateCatalog": True
+    },
     connection_options={
         "path": trusted_step_trainer_path,
-        "partitionKeys": [],
-        "useGlueDataCatalog": "true"  # Enable Data Catalog updates for schema and partitions
+        "useGlueDataCatalog": "true"
     },
     transformation_ctx="step_trainer_trusted_node"
 )

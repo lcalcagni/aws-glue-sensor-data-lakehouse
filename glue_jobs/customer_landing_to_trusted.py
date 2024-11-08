@@ -51,10 +51,14 @@ glueContext.write_dynamic_frame.from_options(
     frame=unique_customers_dyf,
     connection_type="s3",
     format="json",
+    format_options={
+        "updateBehavior": "UPDATE_IN_DATABASE",
+        "partitionKeys": [],
+        "enableUpdateCatalog": True
+    },
     connection_options={
         "path": trusted_bucket_path,
-        "partitionKeys": [],
-        "useGlueDataCatalog": "true"  # Enable Data Catalog updates
+        "useGlueDataCatalog": "true"
     },
     transformation_ctx="customer_trusted_node"
 )

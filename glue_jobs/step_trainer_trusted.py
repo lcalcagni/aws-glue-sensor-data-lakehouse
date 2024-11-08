@@ -62,12 +62,16 @@ step_trainer_trusted_dyf = sparkSqlQuery(
     transformation_ctx="SQLQuery_node"
 )
 
-# Write the joined data to the trusted S3 bucket
+# Write the joined data to the trusted S3 bucket with Data Catalog update enabled
 glueContext.write_dynamic_frame.from_options(
     frame=step_trainer_trusted_dyf,
     connection_type="s3",
     format="json",
-    connection_options={"path": trusted_step_trainer_path},
+    connection_options={
+        "path": trusted_step_trainer_path,
+        "partitionKeys": [],
+        "useGlueDataCatalog": "true"  # Enable Data Catalog updates for schema and partitions
+    },
     transformation_ctx="step_trainer_trusted_node"
 )
 

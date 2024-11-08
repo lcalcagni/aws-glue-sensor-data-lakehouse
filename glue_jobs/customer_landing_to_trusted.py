@@ -46,12 +46,16 @@ unique_customers_dyf = DynamicFrame.fromDF(
     "DropDuplicates_node"
 )
 
-# Write the filtered and deduplicated data to the Trusted Zone
+# Write the filtered and deduplicated data to the Trusted Zone with Data Catalog update enabled
 glueContext.write_dynamic_frame.from_options(
     frame=unique_customers_dyf,
     connection_type="s3",
     format="json",
-    connection_options={"path": trusted_bucket_path},
+    connection_options={
+        "path": trusted_bucket_path,
+        "partitionKeys": [],
+        "useGlueDataCatalog": "true"  # Enable Data Catalog updates
+    },
     transformation_ctx="customer_trusted_node"
 )
 

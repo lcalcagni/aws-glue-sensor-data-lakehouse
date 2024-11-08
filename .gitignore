@@ -1,0 +1,26 @@
+# Terraform state files
+terraform.tfstate
+terraform.tfstate.*
+
+# Terraform directories
+.terraform/
+
+# Terraform variable files (sensitive data)
+*.tfvars
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# MacOS system files
+.DS_Store
+
+# Environments
+.venv/
+env/
+env.bak/
+venv/
+
+# Environment variables
+.env
+
